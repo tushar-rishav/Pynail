@@ -19,9 +19,10 @@ class Img:
             try:
                 im_data = Image.open(self.arg.simg)
                 im_data.thumbnail(self.size, Image.ANTIALIAS)
-                im_data.save(self.arg.timg + ".thumbnail", self.arg.format)
+                im_data.save(self.arg.timg[:-1*len(im_data.format)-1] + ".thumbnail", self.arg.format)
+                print "Thumbanails successfully created..."
             except Exception as e:
-                print e
+                print "Error! Maybe invalid file format "+e
         else:
             if path.isdir(self.arg.cdir):
                 _ = listdir(self.arg.cdir)
@@ -41,11 +42,8 @@ class Img:
                 mkdir(self.arg.destination)         # if directory do not exist then create a new one
             try:
                 im_data = Image.open(f)
-                print self.size,self.arg
                 im_data.thumbnail(self.size, Image.ANTIALIAS)
-                print "fime",i
                 __ = self.arg.destination.rstrip("/") + "/"+ i[:-1*len(im_data.format)-1] + ".thumbnail"
-                print __            
                 im_data.save(__, self.arg.format)
             except Exception as e:
                 print e
@@ -56,11 +54,12 @@ def main():
     parser = argparse.ArgumentParser(description=" \
              Multithreaded quick image processing from terminal", epilog="Author:\
               tushar.rishav@gmail.com")
-    parser.add_argument("-i", "--simg", help="Source path of image for thumbnail",
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument("-i", "--simg", help="Source path of image for thumbnail",
                        type=str)
     parser.add_argument("-t", "--timg", help="Target path for thumbnail",
                        type=str)
-    parser.add_argument("-c", "--cdir", help="For a given directory path it converts all the images into thumbnail",
+    group.add_argument("-c", "--cdir", help="For a given directory path it converts all the images into thumbnail",
                        type=str, default = curdir)
     parser.add_argument("-d", "--destination", help="Target directory path",
                        type=str, default = curdir)

@@ -27,6 +27,11 @@ For creating thumbnail of all images in an entire directory
 ```sh
   pynail -c /home/tushar/ -d /home/tushar/ -s "300,300" -f "png"
 ```
+```sh
+  pynail -i /home/tushar/vector.png -t /home/tushar/tyo.png -s "300,300" -f "JPEG"
+
+```
+Make sure to add valid file format in last parameter. Eg. JPEG is valid not JPG.
 
 ## License
 ![gpl](https://cloud.githubusercontent.com/assets/7397433/9025904/67008062-3936-11e5-8803-e5b164a0dfc0.png)
