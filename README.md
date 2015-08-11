@@ -12,18 +12,20 @@ Creating thumbnails efficiently using Multiprocessing.
 For creating thumbnail of single image
 
 ```sh
-  pynail -i 'source_img_path' 'target_img_path' '(width,height)' 'format'
+ pynail -i 'source_img_path' -t 'target_img_path' -s 'width,height' -f 'format'
+
 ```
 
 For creating thumbnail of all images in an entire directory
 
 ```sh
-  pynail -d 'source_dir_path' 'target_dir_path' '(width,height)' 'format'
+  pynail -c 'source_dir_path' -d 'target_dir_path' -s 'width,height' -f 'format'
+
 ```
 
 ## Example
 ```sh
-  pynail -d "/home/tushar/Desktop/Garbage/Images/Mytrip/Munnar" "/home/tushar/Desktop/thumby" "(400,400)" "JPEG"
+  pynail -c /home/tushar/ -d /home/tushar/ -s "300,300" -f "png"
 ```
 
 ## License
