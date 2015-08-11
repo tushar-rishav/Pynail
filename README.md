@@ -1,5 +1,5 @@
 # Pynail
-Creating thumbnails efficiently using Multiprocessing. (Work under progress :grin: )
+Creating thumbnails efficiently using Multiprocessing. ( Work under progress :grin: )
 
 
 
