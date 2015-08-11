@@ -15,7 +15,7 @@ setup(name='Pynail',
           r for r in open('requirements.txt', 'r').read().split('\n') if r],
       author='Tushar Gautam',
       author_email='tushar.rishav@gmail.com',
-      packages=['pynail',],
+      packages=['pynail', ],
       entry_points={
           'console_scripts': ['pynail=pynail:main'],
       },
