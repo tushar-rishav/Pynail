@@ -1,4 +1,4 @@
-    #! /usr/bin/python
+#! /usr/bin/python
 import Image
 import argparse
 import magic
