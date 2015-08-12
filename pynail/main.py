@@ -2,7 +2,7 @@
 import Image
 import argparse
 import magic
-from os import listdir, path, mkdir , curdir
+from os import listdir, path, mkdir, curdir
 from sys import argv, exit
 from multiprocessing.dummy import Pool as ThreadPool
 
@@ -10,19 +10,21 @@ from multiprocessing.dummy import Pool as ThreadPool
 class Img:
 
     def __init__(self):
-        pass
+        self.err = False
 
     def thumb_gen(self, arg, key, flag):
         self.arg = arg
         self.size = tuple(map(int, self.arg.size.split(',')))
-        if not flag:    # thumbnail for an individual image
+        if not flag:
             try:
                 im_data = Image.open(self.arg.simg)
                 im_data.thumbnail(self.size, Image.ANTIALIAS)
-                im_data.save(self.arg.timg[:-1*len(im_data.format)-1] + ".thumbnail", self.arg.format)
+                im_data.save(self.arg.timg[:-1*len(im_data.format)-1] + "\
+                .thumbnail", self.arg.format)
                 print "Thumbanails successfully created..."
             except Exception as e:
-                print "Error! Maybe invalid file format "+e
+                print str(e)+" Error! Cause: Maybe invalid \
+                file format! or wrong permission."
         else:
             if path.isdir(self.arg.cdir):
                 _ = listdir(self.arg.cdir)
@@ -31,7 +33,10 @@ class Img:
                 __ = pool.map(self.pool_thumb, _)
                 pool.close()
                 pool.join()
-                print "Thumbanails successfully created..."
+                if not self.err:
+                    print "Thumbanails successfully created..."
+                else:
+                    print "Thumbanails not created..."
             else:
                 raise Exception(self.arg.cdir+' is not a directory')
 
@@ -39,14 +44,15 @@ class Img:
         f = self.arg.cdir.rstrip("/") + "/" + i
         if 'image' in magic.from_file(f, mime=True):  # extract all images
             if not path.isdir(self.arg.destination):
-                mkdir(self.arg.destination)         # if directory do not exist then create a new one
+                mkdir(self.arg.destination)         # if directory do not exists then create a new one
             try:
                 im_data = Image.open(f)
                 im_data.thumbnail(self.size, Image.ANTIALIAS)
-                __ = self.arg.destination.rstrip("/") + "/"+ i[:-1*len(im_data.format)-1] + ".thumbnail"
+                __ = self.arg.destination.rstrip("/") + "/" + i[:-1*len(im_data.format)-1] + ".thumbnail"
                 im_data.save(__, self.arg.format)
             except Exception as e:
-                print e
+                print "Error! Maybe invalid file format "+str(e)
+                self.err = True
 
 
 def main():
@@ -58,13 +64,13 @@ def main():
     group.add_argument("-i", "--simg", help="Source path of image for thumbnail",
                        type=str)
     parser.add_argument("-t", "--timg", help="Target path for thumbnail",
-                       type=str)
-    group.add_argument("-c", "--cdir", help="For a given directory path it converts all the images into thumbnail",
-                       type=str, default = curdir)
+                        type=str)
+    group.add_argument("-c", "--cdir", help="For a given directory path it converts all \
+        the images into thumbnail", type=str, default=curdir)
     parser.add_argument("-d", "--destination", help="Target directory path",
-                       type=str, default = curdir)
-    parser.add_argument("-s", "--size", help="Size of the thumbnails", type=str, default="200,200" )
-    parser.add_argument("-f", "--format", help="Format of the thumbnails", type=str, default="JPEG" )
+                        type=str, default=curdir)
+    parser.add_argument("-s", "--size", help="Size of the thumbnails", type=str, default="200,200")
+    parser.add_argument("-f", "--format", help="Format of the thumbnails", type=str, default="JPEG")
     args = parser.parse_args()
     if len(argv) == 1:
         parser.print_help()
