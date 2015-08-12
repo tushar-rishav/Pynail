@@ -1,10 +1,12 @@
 #! /usr/bin/python
+import logging
 import Image
 import argparse
 import magic
 from os import listdir, path, mkdir, curdir
 from sys import argv, exit
 from multiprocessing.dummy import Pool as ThreadPool
+
 
 
 class Img:
@@ -21,22 +23,22 @@ class Img:
                 im_data.thumbnail(self.size, Image.ANTIALIAS)
                 im_data.save(self.arg.timg[:-1*len(im_data.format)-1] + "\
                 .thumbnail", self.arg.format)
-                print "Thumbanails successfully created..."
+                logging.info("Thumbanails successfully created...")
             except Exception as e:
-                print str(e)+" Error! Cause: Maybe invalid \
-                file format! or wrong permission."
+                logging.error(str(e)+" Cause: Maybe invalid \
+                file format or wrong permission.")
         else:
             if path.isdir(self.arg.cdir):
                 _ = listdir(self.arg.cdir)
                 pool = ThreadPool(4)
-                print "Generating thumbnails..."
+                logging.info("Generating thumbnails...")
                 __ = pool.map(self.pool_thumb, _)
                 pool.close()
                 pool.join()
                 if not self.err:
-                    print "Thumbanails successfully created..."
+                    logging.info("Thumbanails successfully created...")
                 else:
-                    print "Thumbanails not created..."
+                    logging.error("Thumbanails not created...")
             else:
                 raise Exception(self.arg.cdir+' is not a directory')
 
@@ -51,11 +53,13 @@ class Img:
                 __ = self.arg.destination.rstrip("/") + "/" + i[:-1*len(im_data.format)-1] + ".thumbnail"
                 im_data.save(__, self.arg.format)
             except Exception as e:
-                print "Error! Maybe invalid file format "+str(e)
+                logging.error(str(e)+" Maybe invalid file format or wrong permission.")
                 self.err = True
 
 
 def main():
+    logging.getLogger().name = "Pynail "
+    logging.getLogger().setLevel(logging.INFO)
     Im = Img()
     parser = argparse.ArgumentParser(description=" \
              Multithreaded quick image processing from terminal", epilog="Author:\
