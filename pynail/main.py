@@ -25,8 +25,8 @@ class Img:
                 .thumbnail", self.arg.format)
                 logging.info("Thumbanails successfully created...")
             except Exception as e:
-                logging.error(str(e)+" Cause: Maybe invalid \
-                file format or wrong permission.")
+                logging.error("%s Cause: Maybe invalid \
+                file format or wrong permission.",e)
         else:
             if path.isdir(self.arg.cdir):
                 _ = listdir(self.arg.cdir)
@@ -53,7 +53,7 @@ class Img:
                 __ = self.arg.destination.rstrip("/") + "/" + i[:-1*len(im_data.format)-1] + ".thumbnail"
                 im_data.save(__, self.arg.format)
             except Exception as e:
-                logging.error(str(e)+" Maybe invalid file format or wrong permission.")
+                logging.error("%s Maybe invalid file format or wrong permission.",e)
                 self.err = True
 
 
