@@ -1,7 +1,8 @@
 # Pynail
 Creating thumbnails efficiently using Multiprocessing.
 
-## Demo
+## [Demo](https://cloud.githubusercontent.com/assets/7397433/9384866/bee546ee-4770-11e5-8c61-20496f8fa7b9.gif)
+
 ![Pynail](https://cloud.githubusercontent.com/assets/7397433/9384866/bee546ee-4770-11e5-8c61-20496f8fa7b9.gif)
 
 ##Installation
