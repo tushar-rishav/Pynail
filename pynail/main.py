@@ -28,10 +28,10 @@ class Img:
                 file format or wrong permission.", e)
         else:
             if path.isdir(self.arg.cdir):
-                _ = listdir(self.arg.cdir)
+                list_dir = listdir(self.arg.cdir)
                 pool = ThreadPool(4)
                 logging.info("Generating thumbnails...")
-                __ = pool.map(self.pool_thumb, _)
+                __ = pool.map(self.pool_thumb, list_dir)
                 pool.close()
                 pool.join()
                 if not self.err:
@@ -49,9 +49,9 @@ class Img:
             try:
                 im_data = Image.open(f)
                 im_data.thumbnail(self.size, Image.ANTIALIAS)
-                __ = self.arg.destination.rstrip("/") + "/\
+                dest = self.arg.destination.rstrip("/") + "/\
                 " + i[:-1*len(im_data.format)-1] + ".thumbnail"
-                im_data.save(__, self.arg.format)
+                im_data.save(dest, self.arg.format)
             except Exception as e:
                 logging.error("%s Maybe invalid file format or wrong\
                 permission.", e)
@@ -95,8 +95,7 @@ def parse():
 
 def main():
     Im = Img()
-    args = parse()
-    
+    args = parse() 
     if args.simg:
         Im.thumb_gen(args, 'simg', 0)
     elif args.cdir:
