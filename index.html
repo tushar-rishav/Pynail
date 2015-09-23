@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Pynail by tushar-rishav</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Pynail</h1>
+      <h2 class="project-tagline">Creating thumbnails efficiently using Multiprocessing.</h2>
+      <a href="https://github.com/tushar-rishav/Pynail" class="btn">View on GitHub</a>
+      <a href="https://github.com/tushar-rishav/Pynail/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/tushar-rishav/Pynail/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="pynail-fork_and_knife" class="anchor" href="#pynail-fork_and_knife" aria-hidden="true"><span class="octicon octicon-link"></span></a>Pynail <img class="emoji" title=":fork_and_knife:" alt=":fork_and_knife:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f374.png" height="20" width="20" align="absmiddle">
+</h1>
+
+<p>Creating thumbnails efficiently using Multiprocessing.</p>
+
+<h2>
+<a id="demo" class="anchor" href="#demo" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="https://cloud.githubusercontent.com/assets/7397433/9384866/bee546ee-4770-11e5-8c61-20496f8fa7b9.gif">Demo</a>
+</h2>
+
+<p><img src="https://cloud.githubusercontent.com/assets/7397433/9384866/bee546ee-4770-11e5-8c61-20496f8fa7b9.gif" alt="Pynail"></p>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<div class="highlight highlight-source-shell"><pre>    python setup.py install</pre></div>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<h6>
+<a id="for-help" class="anchor" href="#for-help" aria-hidden="true"><span class="octicon octicon-link"></span></a>For help</h6>
+
+<div class="highlight highlight-source-shell"><pre> pynail -h
+</pre></div>
+
+<h6>
+<a id="for-creating-thumbnail-of-single-image" class="anchor" href="#for-creating-thumbnail-of-single-image" aria-hidden="true"><span class="octicon octicon-link"></span></a>For creating thumbnail of single image</h6>
+
+<div class="highlight highlight-source-shell"><pre> pynail -i <span class="pl-s"><span class="pl-pds">'</span>source_img_path<span class="pl-pds">'</span></span> -t <span class="pl-s"><span class="pl-pds">'</span>target_img_path<span class="pl-pds">'</span></span> -s <span class="pl-s"><span class="pl-pds">'</span>width,height<span class="pl-pds">'</span></span> -f <span class="pl-s"><span class="pl-pds">'</span>format<span class="pl-pds">'</span></span>
+</pre></div>
+
+<h6>
+<a id="for-creating-thumbnail-of-all-images-in-an-entire-directory" class="anchor" href="#for-creating-thumbnail-of-all-images-in-an-entire-directory" aria-hidden="true"><span class="octicon octicon-link"></span></a>For creating thumbnail of all images in an entire directory</h6>
+
+<div class="highlight highlight-source-shell"><pre>  pynail -c <span class="pl-s"><span class="pl-pds">'</span>source_dir_path<span class="pl-pds">'</span></span> -d <span class="pl-s"><span class="pl-pds">'</span>target_dir_path<span class="pl-pds">'</span></span> -s <span class="pl-s"><span class="pl-pds">'</span>width,height<span class="pl-pds">'</span></span> -f <span class="pl-s"><span class="pl-pds">'</span>format<span class="pl-pds">'</span></span>
+</pre></div>
+
+<h2>
+<a id="example" class="anchor" href="#example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h2>
+
+<div class="highlight highlight-source-shell"><pre>  pynail -c /home/tushar/ -d /home/tushar/ -s <span class="pl-s"><span class="pl-pds">"</span>300,300<span class="pl-pds">"</span></span> -f <span class="pl-s"><span class="pl-pds">"</span>png<span class="pl-pds">"</span></span></pre></div>
+
+<div class="highlight highlight-source-shell"><pre>  pynail -i /home/tushar/vector.png -t /home/tushar/tyo.png -s <span class="pl-s"><span class="pl-pds">"</span>300,300<span class="pl-pds">"</span></span> -f <span class="pl-s"><span class="pl-pds">"</span>JPEG<span class="pl-pds">"</span></span>
+</pre></div>
+
+<h6>
+<a id="make-sure-to-add-valid-file-format-in-last-parameter-eg-jpeg-is-valid-not-jpg" class="anchor" href="#make-sure-to-add-valid-file-format-in-last-parameter-eg-jpeg-is-valid-not-jpg" aria-hidden="true"><span class="octicon octicon-link"></span></a>Make sure to add valid file format in last parameter. Eg. JPEG is valid not JPG.</h6>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p><img src="https://cloud.githubusercontent.com/assets/7397433/9025904/67008062-3936-11e5-8803-e5b164a0dfc0.png" alt="gpl"></p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/tushar-rishav/Pynail">Pynail</a> is maintained by <a href="https://github.com/tushar-rishav">tushar-rishav</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
